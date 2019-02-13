@@ -1,0 +1,451 @@
+
+
+
+
+
+
+network work group a bhushan 
+request for comment mitdmcg 
+nic march 
+
+
+ftp and network mail system 
+
+this paper describ my understand of the result of the network 
+mail system meet sriarc on februari and the 
+implic for ftp file transfer protocol there was general 
+agreement at the meet that network mail function should be within 
+ftp 
+
+ftp current provid two command for handl mail the mail 
+command allow a user to send mail via the telnet connect the 
+server collect the mail and determin it end by search for the 
+charact sequenc crlfcrlf the mlfl mail file command allow 
+a user to send mail via the data connect requir a userftp to 
+handl the command but transfer is more effici as server need not 
+search for a special charact sequenc these command are be 
+use to provid network mail facil local mail and sndmsg 
+program have been modifi at mani site to includ network mail 
+eg userhost at bbntenex and mail host user at mitdmcg 
+
+the network mail system should provid a facil wherebi user can 
+conveni send messag to other network user who have 
+mailbox at one or more host it is not requir that the 
+messag or mail be deliv in realtim the network mail system 
+is not an interact interconsol communic facil but it 
+may be possibl for some site to deliv urgent mail to user in 
+realtim eg print mail at user consol if user is current 
+loggedin the mail system also doe not provid a general inter 
+process communic facil though it may be possibl to deliv 
+messag to program which have mailbox address interprocess and 
+interent communic facil are veri desir but are 
+beyond the scope of the network mail system 
+
+the concept of mailbox and mailbox address are central to this 
+discuss of network mail system a mailbox is a place where the 
+mail is store befor a user pick it up it may be a file in the 
+user directori or it may be a bin for hardcopi the mailbox 
+address is the address requir by the sender in order to send the 
+mail to it destin mailbox for user who have an onlin 
+network mailbox the mailbox address contain the host address and 
+the user mailbox identif at that host the mailbox 
+identif is that which is requir by an ftpserver in order 
+that it may put the mail in the desir mailbox the term mailbox 
+address will be use to refer to the onlin network mailbox address 
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+network mail system function 
+
+the network mail system should provid the follow six function 
+
+creat this refer to the manner in which the user creat or 
+compos his messag the ftp server do not explicit provid 
+ani messag edit capabl server edit convent may 
+be applic in the case of mail command edit convent 
+such as those for charact delet and line cancel vari wide 
+over the network the user is most familiar with his local host 
+convent and these should be use for network mail edit 
+the user also has access to local edit system which can be 
+use for compos messag file the messag file may then be 
+transmit via the mail or mlfl command mlfl be prefer 
+the present ftp approach of assum the creation of messag to 
+be sender respons seem adequ tip user if they 
+desir edit facil should use intermedi host for 
+creat and send messag 
+
+locat how sender determin receiv address ftp assum 
+that the sender know the receiv correct address there is no 
+publish or onlin list of mailbox address there is 
+howev a list of network particip maintain onlin and 
+publish by the network inform center nic at sriarc the 
+network user have been assign a uniqu nic ident and host 
+site by the nic it was therefor specifi in ftp that ftp 
+server maintain a tabl that map nic ident to mailbox 
+identif the nic will maintain onlin and publish the 
+local mailbox address inform for network particip it 
+would be possibl for user to look up a publish list or querri 
+the nic onlin to locat destin address the nic will 
+also provid an onlin facil similar to ftp that can be use 
+by program for retriev the address inform this latter 
+approach of the nic maintain address has sever 
+advantag the user can obtain a number of address for a 
+group and use these to transmit mail the ftp server need not 
+maintain nic ident tabl and the nic can provid a good facil 
+for locat address from last name nic ident or even 
+sketchi inform it may still be desir that ftp server 
+accept nic ident last name and other standard form as mailbox 
+identifi 
+
+send how messag is sent to the destin mailbox the 
+messag may be sent direct to the destin mailbox via 
+telnet or data connect or via an intermedi host such as 
+the nic ftp doe not explicit provid for mail forward by 
+intermedi host but ftp server may be abl to recogn 
+address as not be local and forward mail in the event mail 
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+is to be forward a desir facil is to have the 
+intermedi site return an acknowledg by request upon 
+deliveri of mail or if deliveri fail within a specifi time 
+the current ftp specif recommend that ftpserver accept 
+multipl address but do not requir this 
+
+store where mail is store befor read and if inform is 
+avail for later refer or retriev the ftp doe not 
+requir that sender store mail or keep duplic copi it is 
+the receiv respons to store the inform for 
+read refer or retriev the receiv need not store the 
+mail as a data file but can direct print it out on a user 
+consol or line printer ftp doe not specifi the procedur for 
+storag handl by intermedi site if intermedi site is 
+use for forward the mail until it is deliv to it final 
+destin if the mail is undeliver then the intermedi 
+site should return the undeliv inform to the sender a 
+similar situat aris when send of mail is defer by the 
+send site destin host may be down the send site 
+then act as an intermedi forward insofar as the user is 
+concern 
+
+record should the mail be catalogu and record for later 
+refer and retriev ftp current doe not provid an 
+explicit mechan for the receiv to record mail if an 
+intermedi site the nic is use for mail distribut then a 
+function of such a site could be to record mail if so request 
+nic is ideal for record mail but other site may also wish to 
+record the mail if the mail is record then it is not 
+necessari to send the entir content of the mail instead onli a 
+citat for the document can be sent and the receiv can 
+retriev the mail onli if he want to this is particular 
+use for larg document such as nwgrfc which are distribut 
+to a group the citat may contain author titl retriev 
+pathnam and perhap an abstract 
+
+read how the mail is final present to and read by the 
+user ftp current assum that mail read is entir the 
+receiv site function howev there are way in which the 
+sender can aid the receiv in provid improv mail read 
+facil for exampl the receiv system if it know a 
+messag to be urgent can deliv it immedi at a user consol 
+long messag may be put in separ file with notif in 
+user regular mail altern mail could be a citat that 
+the read program can retriev upon user request select 
+handl of differ class of mail is import for an improv 
+network mail system 
+
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+model for mail system use 
+
+the user of a mail system can use intermedi site for locat 
+address record andor distribut mail and for creat and 
+read mail we therefor have the follow model for mail system 
+use 
+
+the user connect direct to the destin ftp server and send 
+mail use the mail command local edit function are limit 
+to charact delet and line cancel assum user is in lineat 
+atim mode and server convent may also appli the user onli 
+need a usertelnet program at his site but need to know the 
+destin address this model is special applic to tip 
+and other minihost user who do not have a userftp or usermail 
+program 
+
+the user compos the mail use a local editor or mail system 
+and then request his userftp or mail program to send the mail 
+direct to the destin via the ftp mail or mlfl command 
+the user need to know the destin address the mail can be 
+defer by the send program if the destin host is down 
+tip user can use this model by use the facil of a home 
+base host 
+
+the user use an intermedi site such as nic other site may 
+provid forward servic too for mail distribut the user 
+need not know the destin address but can use nic ident for 
+individu and group of individu the mail can be record 
+on request and it send can be defer the destin host 
+may be down or it may be more econom to defer mail the 
+messag to be mail may be creat at the local site use local 
+edit facil or it may be creat direct at the 
+intermedi site 
+
+the user may send a citat of the mail instead of the complet 
+mail item the citat refer to an exist document which can 
+be retriev onlin such as the nic number of a nic journal 
+communic 
+
+mail to tip user 
+
+the tip doe not current provid an ftp server or mailbox 
+facil while it is possibl to send mail to tip termin such 
+as line printer it seem undesir to do so becaus of the 
+possibl of lose mail the lack of privaci and the fact that 
+user may be sever or sever hundr mile away from the locat 
+of the tip the tip user normal have a homebas comput where 
+they do their comput work most of the time the tip user problem 
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+is best solv by requir that tip user rent mailbox at their 
+homebas host such a host can provid good mail read and 
+querri facil a tip user can request his home host to send 
+him notif of mail on a tip termin if rdml command nwgrfc 
+is accept in ftp tip user could use such a command more 
+import if the user has a number of mailbox on differ host 
+the rdml or rdmf command can be use to read his mail at all the 
+site where he has mailbox 
+
+access control in mail system 
+
+it has been suggest that ftp specif should requir that mail 
+function for receiv mail should be free ie ftp server 
+should not requir the user to login send the user pass and acct 
+command in the absenc of the access control command the ftp 
+server should charg the cost of receiv mail to an overhead or 
+brows account it should be note that this free mail function 
+use default user account may not allow non mailrel command 
+without reiniti this requir will improv communic 
+among the network user 
+
+some system such as multic have mechan for access control in 
+the receipt of mail that is a user can specifi who is elig to 
+send him mail normal user give then access ie ani 
+one can send mail the access control command would be requir to 
+gain privileg access the user command doe not seem the best way 
+to identifi the sender of mail consid user log in as guest 
+iccc network mitdmcg and networkus a separ from command 
+seem desir such a command can be use to identifi the sender 
+as well as to send acknowledg and repli the receiv site 
+can tag the mail as from akb at mitdmcg log in as guest the 
+receiv can then send repli to the mailbox address akb at host 
+sndmsg akbdmcg or mail dmcg akb 
+
+network inform center function 
+
+the nic is a veri special facil for handl mail it provid 
+facil for record and distribut mail to individu and 
+group of individu and for locat user address the nic 
+will also undertak to provid distribut of unrecord mail 
+current the nic requir that user log into the nic and use nls to 
+creat and distribut mail use nls for creat mail has been a 
+frustrat experi for mani who are use to differ edit 
+system recent there has been a problem that nic is overload at 
+most time of the day and even if one can get a network termin 
+and log in the interact is quit slow as nic or nls is 
+design for characteratatim interact with remot echo the 
+
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+use is ineffici use nic is particular unbear when the 
+user fall behind in his echo by as much as an entir line 
+
+an altern to direct use of nic is to use the nic via ftp and 
+program at the user site the user can creat journal document 
+use his own local edit system and then transfer it to nic via 
+ftp the user may have to specifi such inform as author titl 
+where the acknowledg should be sent and journal number if the 
+item is to be record it should also be possibl for user to send 
+sequenti file to nic and have them restructuredinto nls form 
+without have to do an input sequenti a suggest is to nls 
+the file if it name is suffix with a nls altern it should 
+be possibl for user to retriev journal document and other 
+sequenti file without have to do a previous output sequenti 
+
+the nic current deliv mail via hardcopi andor onlin onlin 
+current mean that user must log into nic to see if he has a 
+messag and read it by print branch the messag are not seen by 
+the destin user for sever day and mani user get their hard 
+copi befor they have had a chanc to examin their onlin nic mail 
+if the nic were to deliv mail via ftp to network user then the 
+mail turnaround time will be great speed and the user will not 
+have to log into the nic larg document need not be mail to the 
+user in their entireti but onli a citat need be sent the nic 
+willhav to collect the inform on the mailbox address of 
+network particip for deliv mail especi sinc it appear 
+that mani ftp server are not respect nic ident it is 
+recogn that a user may have onli one the most use of these 
+address 
+
+the nic identif subsystem current access via nls onli 
+contain inform on user such as affili us mail address 
+telephon number etc and group member etc the onlin 
+mailbox address inform can be ad here the nic will 
+undertak to provid a facil wherebi the identif subsystem 
+can be querri by program allow mail program to retriev 
+the address automat this facil will be separ from 
+ftp 
+
+ftp modif 
+
+the ftp current doe not provid explicit facil for record 
+mail communic sender address send program readabl 
+citat specifi author and titl for document request 
+acknowledg and indic messag type urgent ordinari and 
+long to overcom these defici we can take ani of the 
+follow approach 
+
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+kludg the desir featur in the pathnam syntax of the mail and 
+mlfl command justifi the kludg on the ground that most of 
+the function are to be use onli by the nic 
+
+add new command for the desir function and alter the mail and 
+mlfl command somewhat to recogn the exist of the new 
+command 
+
+defin a new mail command which incorpor the miss function 
+in the process defin new command for the desir function 
+the mail and mlfl command can be use in their present form but 
+may be gradual phase out 
+
+the first approach seem undesir to me as mani of the miss 
+function can be use by other site as well in addit it will be 
+easier to write program to deal with command rather than a complex 
+syntax the second and the third approach are not veri differ 
+from each other the third approach seem prefer as it will 
+allow exist mail program to function in their present form 
+use the third approach consid the follow new ftp command 
+
+mlto mail to the argument is one or more mailbox identifi 
+separ by comma it is suggest that if there is no 
+argument the mail should be sent to some respons user or 
+print on a printer this command start the sequenc of 
+option ftp mail relat command describ below the sequenc 
+end with the text file or cita citat command 
+
+from the argument is the address of the sender or sender it is 
+in a standard form that can be interpret by program as well as 
+human user the inform is to be use for identifi the 
+sender for send repli and for send acknowledg if 
+the receiv is an intermedi forward site 
+
+mtyp mail type this identifi the type of mail as u urgent 
+o ordinari and l long the receiv system can take the 
+appropri action from this knowledg the default assumpt 
+is ordinari mail 
+
+reco record the mail the argument if present is the identifi 
+inform for record such as nic journal number if no 
+argument is present the server will assign the record 
+inform and send an appropri repli realtim or defer 
+
+auth author identifi the author of the document in a form 
+accept to the server nic ident may be requir by nic 
+
+
+
+
+
+bhushan page 
+
+rfc ftp and network mail system march 
+
+
+titl titl identifi the titl of the document the argument 
+is an ascii string end with the sequenc crlfcrlf 
+
+ackn acknowledg relev for intermedi forward site 
+ask the server to send acknowledg on deliveri or if deliveri 
+fail within a specifi time 
+
+text no argument start the transfer of mail over telnet 
+connect in an ident manner as mail 
+
+file no argument start transfer of mail over the data 
+connect in an ident manner as mlfl 
+
+cita citat argument is the pathnam of retriev file 
+
+we also need to defin new repli code for handl mail some site 
+have express the need for repli such as send onli x byte of 
+mail other repli could specif request addit command 
+such as userpassacct for privileg mail fromackn for mail 
+forward and authtitl for record mail anoth suggest that 
+may be given consider is allow typebyt other than a for 
+file command mail larg file between like machin such as 
+pdps is more effici in i the rdml and rdmf command 
+propos by bressler and thoma nwgrfc also merit 
+consider as they would aid the handl of mail for user who 
+have mailbox at differ host 
+
+
+this rfc was put into machin readabl form for entri 
+into the onlin rfc archiv by kelli tardif viageni 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bhushan page 
+
